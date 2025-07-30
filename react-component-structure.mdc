@@ -14,8 +14,11 @@ alwaysApply: true
 2.  **기능별 그룹화:** `// --- 기능 이름 ---` 같은 주석을 사용해 각 기능 단위를 명확히 구분합니다.
 3.  **관련 로직 함께 배치:** 각 기능 그룹 안에 해당 기능의 상태, 이펙트, 핸들러를 모두 모아둡니다.
 4.  **렌더링은 마지막에:** JSX를 반환하는 `return`문은 항상 컴포넌트의 가장 마지막에 위치시킵니다.
+5.  **Named Export 사용:** 컴포넌트는 `named export` (`export const Component`)를 사용합니다. 이는 코드베이스 전체에서 일관된 이름을 유지하고, 검색 및 리팩토링을 용이하게 합니다. `default export`는 지양합니다.
 
 ## 예시
+
+### 컴포넌트 내부 구조
 ```jsx
 function Component() {
   // --- 기능 A ---
@@ -30,3 +33,17 @@ function Component() {
   // --- 렌더링 ---
   return (/* JSX */);
 }
+```
+
+### Export 방식
+```jsx
+// Good: Named Export
+export const MyComponent = () => {
+  // ...
+};
+
+// Bad: Default Export
+export default function MyComponent() {
+  // ...
+}
+```
